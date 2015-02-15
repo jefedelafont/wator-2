@@ -43,6 +43,7 @@ public class RunTurn extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("x-size")); 
 		int x = Integer.parseInt(request.getParameter("x-size")); 
 		int y = Integer.parseInt(request.getParameter("y-size"));
 		game = new Board(x, y); 

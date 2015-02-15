@@ -13,6 +13,7 @@ public class Board {
 	final static int initialHealth = 10; 
 	final static int ticksToBreed = 5; 
 	final static int healthFromEating = 2; 
+	private int turnCount = 0; 
 	
 	
 	public Board(int x, int y) { 
@@ -75,6 +76,9 @@ public class Board {
 	public String printBoard()
 	{ 
 		StringBuilder sb = new StringBuilder(); 
+		sb.append("Turns: "); 
+		sb.append(turnCount++); 
+		sb.append("\n"); 
 		for (int ii = 0; ii < this.sizeX; ii++)
 		{
 			for (int jj = 0; jj < this.sizeY; jj++)
