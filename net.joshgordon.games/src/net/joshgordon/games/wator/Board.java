@@ -1,5 +1,6 @@
 package net.joshgordon.games.wator;
 
+import java.io.IOException;
 import java.util.ArrayList; 
 import java.util.List;
 import java.util.Random; 
@@ -45,7 +46,7 @@ public class Board {
 		}
 	}
 	
-	public AnimalType checkSquare(int x, int y)  throws InvalidCord
+	public AnimalType checkSquare(int x, int y)
 	{
 		return board.get(x).get(y).getType(); 
 	}
@@ -53,6 +54,22 @@ public class Board {
 	public Animal getSquare(int x, int y)
 	{
 		return board.get(x).get(y); 
+	}
+	
+	public void putSquare(int x, int y, Animal animal)
+	{
+		board.get(x).set(y, animal); 
+	}
+	
+	public void tick()
+	{
+		for (int ii = 0; ii < this.sizeX; ii++)
+		{
+			for (int jj = 0; jj < this.sizeY; jj++)
+			{
+				board.get(ii).get(jj).tick(); 
+			}
+		}
 	}
 	
 	public String printBoard()
@@ -72,6 +89,16 @@ public class Board {
 	public static void main(String [] args)
 	{
 		Board myBoard = new Board(25, 25); 
-		System.out.println(myBoard.printBoard()); 
+		while (true) 
+		{
+			myBoard.tick();
+			System.out.println(myBoard.printBoard()); 
+			try {
+				System.in.read();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
